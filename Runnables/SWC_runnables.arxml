@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00046.xsd">
+	<AR-PACKAGES>
+		<!-- runnables, Rawan Sleem -->
+		<AR-PACKAGE>
+			<SHORT-NAME>runnables</SHORT-NAME>
+			<ELEMENTS>
+				<SENDER-RECEIVER-INTERFACE>
+					<SHORT-NAME>throttle_ctrl</SHORT-NAME>
+					<DATA-ELEMENTS>
+						<VARIABLE-DATA-PROTOTYPE>
+							<SHORT-NAME>throttle_cmd</SHORT-NAME>
+							<TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_PlatformTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+						</VARIABLE-DATA-PROTOTYPE>
+					</DATA-ELEMENTS>
+				</SENDER-RECEIVER-INTERFACE>
+				<APPLICATION-SW-COMPONENT-TYPE>
+					<SHORT-NAME>ThrottleCtrl_SWC</SHORT-NAME>
+					<PORTS>
+						<P-PORT-PROTOTYPE>
+							<SHORT-NAME>PP_cmd</SHORT-NAME>
+							<PROVIDED-INTERFACE-TREF
+								DEST="SENDER-RECEIVER-INTERFACE">/runnables/throttle_ctrl</PROVIDED-INTERFACE-TREF>
+						</P-PORT-PROTOTYPE>
+					</PORTS>
+					<INTERNAL-BEHAVIORS>
+						<SWC-INTERNAL-BEHAVIOR>
+							<SHORT-NAME>throttle_cntrl_behavior</SHORT-NAME>
+							<RUNNABLES>
+								<RUNNABLE-ENTITY>
+									<SHORT-NAME>set_cmd_runnable</SHORT-NAME>
+									<MINIMUM-START-INTERVAL>0</MINIMUM-START-INTERVAL>
+									<CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+									<DATA-WRITE-ACCESSS>
+										<VARIABLE-ACCESS>
+											<SHORT-NAME>cmd_data</SHORT-NAME>
+											<ACCESSED-VARIABLE>
+												<AUTOSAR-VARIABLE-IREF>
+													<PORT-PROTOTYPE-REF
+														DEST="P-PORT-PROTOTYPE">/ThrottleCtrl_SWC/PP_cmd</PORT-PROTOTYPE-REF>
+													<TARGET-DATA-PROTOTYPE-REF
+														DEST="VARIABLE-DATA-PROTOTYPE">/throttle_ctrl/throttle_cmd</TARGET-DATA-PROTOTYPE-REF>
+												</AUTOSAR-VARIABLE-IREF>
+											</ACCESSED-VARIABLE>
+										</VARIABLE-ACCESS>
+									</DATA-WRITE-ACCESSS>
+									<SYMBOL>set_cmd</SYMBOL>
+								</RUNNABLE-ENTITY>
+							</RUNNABLES>
+						</SWC-INTERNAL-BEHAVIOR>
+					</INTERNAL-BEHAVIORS>
+				</APPLICATION-SW-COMPONENT-TYPE>
+			</ELEMENTS>
+		</AR-PACKAGE>
+	</AR-PACKAGES>
+</AUTOSAR>
